@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.springBoot.dao.ds1.AccountMapper">
+    <update id="toTranAccount">
+          UPDATE account SET BALANCE=BALANCE - #{balance} WHERE ID=#{tid}
+    </update>
+
+    <update id="tranAccount">
+          UPDATE account SET BALANCE=BALANCE + #{balance} WHERE ID=#{id}
+    </update>
+
+    <select id="findOne" parameterType="int" resultType="com.qf.springBoot.pojo.Account">
+        SELECT * FROM account WHERE ID=#{id}
+    </select>
+
+    <delete id="deleteOne" parameterType="int">
+        DELETE FROM account WHERE ID=#{id}
+    </delete>
+
+    <insert id="addOne" parameterType="com.qf.springBoot.pojo.Account">
+        INSERT INTO account(NAME,BALANCE) VALUES (#{name},#{balance})
+    </insert>
+</mapper>

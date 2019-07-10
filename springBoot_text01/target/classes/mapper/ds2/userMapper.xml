@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.springBoot.dao.ds2.UserMapper">
+
+    <select id="findAll" resultType="com.qf.springBoot.pojo.User">
+        SELECT * FROM USER
+    </select>
+
+    <select id="findOne" parameterType="int" resultType="com.qf.springBoot.pojo.User">
+        SELECT * FROM USER WHERE UID=#{uid}
+    </select>
+
+    <delete id="delByUid" parameterType="int">
+        DELETE FROM USER WHERE UID=#{uid}
+    </delete>
+
+    <insert id="addOne" parameterType="com.qf.springBoot.pojo.User">
+        INSERT INTO USER (UNAME,UPOW,EMAIL) VALUES (#{uname},#{upow},#{email})
+    </insert>
+
+    <update id="updateOne" parameterType="com.qf.springBoot.pojo.User">
+        UPDATE USER
+        <set>
+            <trim suffixOverrides=",">
+                <if test="uname!=null and uname!=''">
+                    UNAME=#{uname},
+                </if>
+                <if test="upow!=null and upow!=''">
+                    UPOW=#{upow},
+                </if>
+                <if test="email!=null and email!=''">
+                    EMAIL=#{email},
+                </if>
+            </trim>
+        </set>
+        <where>
+            UID=#{uid}
+        </where>
+    </update>
+    <select id="adoutFind" resultType="com.qf.springBoot.pojo.User">
+        SELECT * FROM USER
+        <where>
+            <if test="tiaoJian!=null">
+                AND UNAME LIKE CONCAT(CONCAT('%',#{tiaoJian}),'%')
+                OR UPOW LIKE CONCAT(CONCAT('%',#{tiaoJian}),'%')
+                OR EMAIL LIKE CONCAT(CONCAT('%',#{tiaoJian}),'%')
+            </if>
+        </where>
+
+    </select>
+
+</mapper>

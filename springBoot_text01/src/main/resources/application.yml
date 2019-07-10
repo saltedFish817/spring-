@@ -1,0 +1,16 @@
+server:
+  port: 9002
+mybatis:
+  type-aliases-package: com.qf.springBoot.pojo
+spring:
+  datasource:
+     zhongchou:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/zhongchou?useUnicode=true&serverTimezone=UTC&characterEncoding=utf8
+        username: root
+        password:
+     dianzzz:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/dianzzz?useUnicode=true&serverTimezone=UTC&characterEncoding=utf8
+        username: root
+        password:
